@@ -1,8 +1,10 @@
 name: Collector packaging
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  release:
+    types: [published,created,edited]
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout collector-base
@@ -35,13 +37,15 @@ jobs:
             !exclude.txt
             !Jenkinsfile
             !release.zip
-      - name: Create
+      - name: Create release
         uses: ncipollo/release-action@v1
         with:
           artifacts: release.zip
           artifactContentType: application/zip
-          tag: v0.1.1
-          prerelease: true
-          omitPrereleaseDuringUpdate: true
-          commit: ${{ github.sha }}
           removeArtifacts: true
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          file: release.zip
+          asset_name: something-${{ github.ref }}
+          overwrite: true
