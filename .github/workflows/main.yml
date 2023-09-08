@@ -27,7 +27,7 @@ jobs:
       - name: Archive release
         uses: thedoctor0/zip-release@0.7.1
         with:
-          filename: ${{ github.repository }}-${{ github.ref_name }}.zip
+          filename: ../${{ github.repository }}-${{ github.ref_name }}.zip
           path: '*'
           directory: ${{ github.owner }}
           exclusions: '*.git* composer.json exclude.txt Jenkinsfile collectors/*.git*'
