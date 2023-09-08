@@ -23,6 +23,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: collectors
+      - run: mkdir ${{ github.repository_owner }}
       - name: Archive release
         uses: thedoctor0/zip-release@0.7.1
         with:
