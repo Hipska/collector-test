@@ -1,8 +1,9 @@
 name: Collector packaging
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
-  release:
-    types: [published,created,edited]
+  push:
+    tags:
+      - *
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -26,26 +27,33 @@ jobs:
         uses: thedoctor0/zip-release@0.7.1
         with:
           exclusions: '.git* composer.json exclude.txt Jenkinsfile collectors/.git*'
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: release
-          path: |
-            *
-            !**/.git*
-            !composer.json
-            !exclude.txt
-            !Jenkinsfile
-            !release.zip
+#      - name: Upload artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: release
+#          path: |
+#            *
+#            !**/.git*
+#            !composer.json
+#            !exclude.txt
+#            !Jenkinsfile
+#            !release.zip
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
+          allowUpdates: true
           artifacts: release.zip
           artifactContentType: application/zip
-          removeArtifacts: true
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          file: release.zip
-          asset_name: something-${{ github.ref }}
-          overwrite: true
+          artifactErrorsFailBuild: true
+          draft: true
+          omitDraftDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          generateReleaseNotes: true
+          updateOnlyUnreleased: true
+#      - name: Upload binaries to release
+#        uses: svenstaro/upload-release-action@v2
+#        with:
+#          file: release.zip
+#          asset_name: something-${{ github.ref }}
+#          overwrite: true
