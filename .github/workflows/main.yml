@@ -19,15 +19,16 @@ jobs:
             core
             data
             toolkit
+          path: ${{ github.repository }}
       - name: Checkout current collector
         uses: actions/checkout@v4
         with:
-          path: collectors
-      - run: mkdir ${{ github.repository_owner }}
+          path: ${{ github.repository }}/collectors
       - name: Archive release
         uses: thedoctor0/zip-release@0.7.1
         with:
           filename: ${{ github.repository }}-${{ github.ref_name }}.zip
+          path: ${{ github.repository }}
           exclusions: '*.git* composer.json exclude.txt Jenkinsfile collectors/*.git*'
       - name: Create release
         uses: ncipollo/release-action@v1
