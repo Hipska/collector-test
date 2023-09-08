@@ -16,12 +16,10 @@ jobs:
             core
             data
             toolkit
-            exec.php
       - name: Checkout collector
         uses: actions/checkout@v4
         with:
           path: collectors
-      - name: Archive Release
-        uses: thedoctor0/zip-release@0.7.1
+      - uses: thedoctor0/zip-release@0.7.1
         with:
-          exclusions: '*.git* test vendor composer.* Jenkinsfile collectors/*.git*'
+          exclusions: '*.git* composer.* Jenkinsfile collectors/*.git*'
