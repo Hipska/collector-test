@@ -29,7 +29,7 @@ jobs:
         with:
           filename: ../${{ github.repository }}-${{ github.ref_name }}.zip
           path: '*'
-          directory: ${{ github.owner }}
+          directory: ${{ github.repository_owner }}
           exclusions: '*.git* composer.json exclude.txt Jenkinsfile collectors/*.git*'
       - name: Create release
         uses: ncipollo/release-action@v1
