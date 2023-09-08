@@ -26,23 +26,13 @@ jobs:
       - name: Archive release
         uses: thedoctor0/zip-release@0.7.1
         with:
+          filename: ${{ github.repository }}-${{ github.ref_name }}.zip
           exclusions: '*.git* composer.json exclude.txt Jenkinsfile collectors/*.git*'
-#      - name: Upload artifact
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: release
-#          path: |
-#            *
-#            !**/.git*
-#            !composer.json
-#            !exclude.txt
-#            !Jenkinsfile
-#            !release.zip
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: release.zip
+          artifacts: ${{ github.repository }}-${{ github.ref_name }}.zip
           artifactContentType: application/zip
           artifactErrorsFailBuild: true
           draft: true
@@ -51,9 +41,3 @@ jobs:
           omitPrereleaseDuringUpdate: true
           generateReleaseNotes: true
           updateOnlyUnreleased: true
-#      - name: Upload binaries to release
-#        uses: svenstaro/upload-release-action@v2
-#        with:
-#          file: release.zip
-#          asset_name: something-${{ github.ref }}
-#          overwrite: true
