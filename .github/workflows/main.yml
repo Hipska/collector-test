@@ -23,8 +23,13 @@ jobs:
       - name: Archive release
         uses: thedoctor0/zip-release@0.7.1
         with:
-          exclusions: '*.git* composer.* Jenkinsfile collectors/*.git*'
-      - name: Upload
+          exclusions: '.git* composer.* exclude.txt Jenkinsfile collectors/.git*'
+      - name: Upload artefact
         uses: actions/upload-artifact@v3
         with:
-          path: release.zip
+          name: release
+          path: |
+            *
+            !**/.git*
+            !exclude.txt
+            !Jenkinsfile
