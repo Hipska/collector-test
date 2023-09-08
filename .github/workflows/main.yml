@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout collector base
+      - name: Checkout collector-base
         uses: actions/checkout@v4
         with:
           repository: Combodo/itop-data-collector-base
@@ -16,10 +16,15 @@ jobs:
             core
             data
             toolkit
-      - name: Checkout collector
+      - name: Checkout current collector
         uses: actions/checkout@v4
         with:
           path: collectors
-      - uses: thedoctor0/zip-release@0.7.1
+      - name: Archive release
+        uses: thedoctor0/zip-release@0.7.1
         with:
           exclusions: '*.git* composer.* Jenkinsfile collectors/*.git*'
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          path: release.zip
