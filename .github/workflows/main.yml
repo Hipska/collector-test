@@ -31,7 +31,7 @@ jobs:
           path: '*'
           directory: ${{ github.repository_owner }}
           exclusions: '*/composer.json */exclude.txt */Jenkinsfile'
-      - name: Create release
+      - name: Create draft release
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
@@ -44,4 +44,3 @@ jobs:
           omitBodyDuringUpdate: true
           omitPrereleaseDuringUpdate: true
           updateOnlyUnreleased: true
-          token: ${{ secrets.GITHUB_TOKEN }}
