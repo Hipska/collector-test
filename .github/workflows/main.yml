@@ -42,4 +42,4 @@ jobs:
           tag: v0.1.1
           draft: true
           omitDraftDuringUpdate: true
-          commit: ${{ github.ref }}
+          commit: ${{ github.sha }}
