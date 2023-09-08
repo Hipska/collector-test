@@ -39,7 +39,9 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: release.zip
-          tag: v0.0.1
-          draft: true
-          omitDraftDuringUpdate: true
+          artifactContentType: application/zip
+          tag: v0.1.1
+          prerelease: true
+          omitPrereleaseDuringUpdate: true
           commit: ${{ github.sha }}
+          removeArtifacts: true
