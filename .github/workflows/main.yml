@@ -28,7 +28,8 @@ jobs:
         uses: thedoctor0/zip-release@0.7.1
         with:
           filename: ${{ github.repository }}-${{ github.ref_name }}.zip
-          path: ${{ github.repository }}
+          path: '*'
+          directory: ${{ github.owner }}
           exclusions: '*.git* composer.json exclude.txt Jenkinsfile collectors/*.git*'
       - name: Create release
         uses: ncipollo/release-action@v1
