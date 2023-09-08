@@ -24,4 +24,4 @@ jobs:
       - name: Archive Release
         uses: thedoctor0/zip-release@0.7.1
         with:
-          exclusions: 'test vendor composer.* Jenkinsfile'
+          exclusions: '*.git* test vendor composer.* Jenkinsfile collectors/*.git*'
