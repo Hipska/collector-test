@@ -29,7 +29,7 @@ jobs:
           filename: ../${{ github.repository }}-${{ github.ref_name }}.zip
           path: '*'
           directory: ${{ github.repository_owner }}
-          exclusions: '*/composer.json */exclude.txt */Jenkinsfile'
+          exclusions: '*.git* */composer.json */exclude.txt */Jenkinsfile'
       - name: Create draft release
         uses: ncipollo/release-action@v1
         with:
