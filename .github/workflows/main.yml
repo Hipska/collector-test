@@ -35,7 +35,6 @@ jobs:
         with:
           allowUpdates: true
           artifacts: ${{ github.repository }}-${{ github.ref_name }}.zip
-          artifactContentType: application/zip
           artifactErrorsFailBuild: true
           draft: true
           generateReleaseNotes: true
@@ -43,3 +42,4 @@ jobs:
           omitBodyDuringUpdate: true
           omitPrereleaseDuringUpdate: true
           updateOnlyUnreleased: true
+          token: ${{ secrets.ACCESS_TOKEN }}
